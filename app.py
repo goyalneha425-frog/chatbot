@@ -20,7 +20,7 @@ from langchain_core.messages import (
 
 
 # =========================================================
-# 1. PAGE CONFIGURATION
+# PAGE CONFIG
 # =========================================================
 
 st.set_page_config(
@@ -32,236 +32,159 @@ st.set_page_config(
 
 
 # =========================================================
-# 2. CUSTOM CSS
+# CUSTOM CSS
 # =========================================================
 
 st.markdown(
     """
     <style>
 
-    /* Main background */
     .stApp {
-        background-color: #F7F9FC;
+        background-color: #F6F8FB;
     }
 
-    /* Remove unnecessary top spacing */
     .block-container {
+        max-width: 1150px;
         padding-top: 2rem;
         padding-bottom: 3rem;
-        max-width: 1150px;
     }
 
-    /* Hero section */
     .hero-box {
-        background: linear-gradient(
-            135deg,
-            #14213D 0%,
-            #1F3A5F 100%
-        );
-
+        background: linear-gradient(135deg, #162A46 0%, #243F64 100%);
         padding: 34px 38px;
         border-radius: 20px;
-        margin-bottom: 24px;
-
-        box-shadow:
-        0px 8px 25px rgba(0,0,0,0.08);
-    }
-
-    .hero-title {
-        color: white;
-        font-size: 36px;
-        font-weight: 700;
-        margin-bottom: 4px;
-    }
-
-    .hero-subtitle {
-        color: #DCE6F2;
-        font-size: 17px;
-        margin-bottom: 0px;
+        margin-bottom: 22px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.08);
     }
 
     .company-name {
-        color: #9CC5F2;
-        font-size: 14px;
-        font-weight: 600;
-        letter-spacing: 1.3px;
-        text-transform: uppercase;
+        color: #AFCDF0;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 1.4px;
         margin-bottom: 8px;
     }
 
-    /* Problem statement */
-    .problem-box {
-        background-color: white;
-        padding: 18px 22px;
-        border-radius: 14px;
-
-        border: 1px solid #E6EAF0;
-
-        margin-top: 6px;
-        margin-bottom: 22px;
-
-        box-shadow:
-        0px 3px 12px rgba(0,0,0,0.035);
-    }
-
-    .problem-title {
-        font-size: 14px;
+    .hero-title {
+        color: #FFFFFF;
+        font-size: 36px;
         font-weight: 700;
-        color: #1F3A5F;
         margin-bottom: 5px;
     }
 
-    .problem-text {
-        font-size: 14px;
-        color: #5D6775;
-        line-height: 1.6;
+    .hero-subtitle {
+        color: #D8E4F1;
+        font-size: 17px;
     }
 
-    /* Infographic cards */
+    .problem-box {
+        background-color: #FFFFFF;
+        padding: 20px 24px;
+        border-radius: 15px;
+        border: 1px solid #E6EAF0;
+        margin-bottom: 22px;
+        box-shadow: 0 3px 12px rgba(0,0,0,0.035);
+    }
+
+    .problem-title {
+        color: #1D3B5F;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.7px;
+        margin-bottom: 7px;
+    }
+
+    .problem-text {
+        color: #606B78;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
     .info-card {
-
-        background-color: white;
-
+        background-color: #FFFFFF;
+        border: 1px solid #E6EAF0;
         border-radius: 16px;
-
         padding: 22px;
-
-        min-height: 180px;
-
-        border: 1px solid #E7EAF0;
-
-        box-shadow:
-        0px 4px 15px rgba(0,0,0,0.04);
+        min-height: 190px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.04);
     }
 
     .info-icon {
-        font-size: 32px;
+        font-size: 34px;
         margin-bottom: 10px;
     }
 
     .info-heading {
+        color: #182B45;
         font-size: 18px;
         font-weight: 700;
-        color: #162A43;
-        margin-bottom: 12px;
+        margin-bottom: 10px;
     }
 
-    .flow-text {
+    .info-text {
+        color: #636E7C;
         font-size: 14px;
-        color: #5B6573;
         line-height: 1.7;
     }
 
-    .flow-highlight {
-
+    .flow-chip {
         display: inline-block;
-
-        background-color: #EEF4FB;
-
-        color: #1F4E79;
-
-        padding: 5px 10px;
-
+        background-color: #EDF4FC;
+        color: #214E79;
+        padding: 6px 10px;
         border-radius: 8px;
-
-        font-size: 13px;
-
-        margin-top: 6px;
-
-        margin-right: 4px;
+        font-size: 12px;
+        margin-top: 8px;
     }
 
-    /* Section title */
     .section-title {
-
-        font-size: 22px;
-
-        font-weight: 700;
-
         color: #172B4D;
-
-        margin-top: 26px;
-
+        font-size: 23px;
+        font-weight: 700;
+        margin-top: 28px;
         margin-bottom: 4px;
     }
 
     .section-caption {
-
+        color: #7C8592;
         font-size: 14px;
-
-        color: #7A8493;
-
-        margin-bottom: 16px;
+        margin-bottom: 15px;
     }
-
-    /* Chat messages */
 
     [data-testid="stChatMessage"] {
-
-        background-color: white;
-
-        border: 1px solid #E7EAF0;
-
-        border-radius: 15px;
-
-        padding: 8px;
-
-        margin-bottom: 10px;
-
-        box-shadow:
-        0px 2px 8px rgba(0,0,0,0.025);
-    }
-
-    /* Chat input */
-    [data-testid="stChatInput"] {
-
-        border-radius: 14px;
-    }
-
-    /* Sidebar */
-    section[data-testid="stSidebar"] {
-
         background-color: #FFFFFF;
+        border: 1px solid #E7EAF0;
+        border-radius: 15px;
+        padding: 8px;
+        margin-bottom: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.025);
+    }
 
+    section[data-testid="stSidebar"] {
+        background-color: #FFFFFF;
         border-right: 1px solid #E8EBF0;
     }
 
-    /* Sidebar headings */
     .sidebar-title {
-
-        font-size: 19px;
-
-        font-weight: 700;
-
         color: #172B4D;
-
-        margin-bottom: 6px;
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 4px;
     }
 
-    .sidebar-small {
-
+    .sidebar-subtitle {
+        color: #747E8C;
         font-size: 13px;
-
-        color: #6E7785;
-
         line-height: 1.5;
     }
 
-    /* Status */
     .status-badge {
-
         display: inline-block;
-
-        background-color: #E9F8EF;
-
+        background-color: #EAF7EF;
         color: #247A45;
-
-        padding: 6px 10px;
-
+        padding: 6px 11px;
         border-radius: 20px;
-
         font-size: 12px;
-
         font-weight: 600;
     }
 
@@ -272,119 +195,73 @@ st.markdown(
 
 
 # =========================================================
-# 3. API KEY
+# API KEY
 # =========================================================
 
 os.environ["GOOGLE_API_KEY"] = st.secrets["GOOGLE_API_KEY"]
 
 
 # =========================================================
-# 4. SYSTEM PROMPT
+# SYSTEM PROMPT
 # =========================================================
 
 system_prompt = """
-You are the HR Employee Support Assistant for
-Shebal Solutions Pvt. Ltd.
+You are the HR Employee Support Assistant for Shebal Solutions Pvt. Ltd.
 
-Your purpose is to help employees understand company
-HR policies and HR-related processes.
+Your role is to help employees understand company HR policies
+and HR-related processes.
 
 Instructions:
 
 1. Answer clearly and professionally.
-
 2. Use simple employee-friendly language.
-
-3. Keep answers concise unless the employee requests
-   more detail.
-
-4. For company-specific questions, use only the
-   retrieved HR policy context.
-
-5. Never invent company-specific policies,
-   eligibility rules, benefits, leave limits,
-   notice periods or procedures.
-
-6. If the required information is not available
-   in the retrieved policy context, say:
-
-   "I could not find this information in the
-   Shebal Solutions HR Policy Handbook.
+3. Keep answers concise unless more detail is requested.
+4. For company-specific questions, use only the retrieved HR policy context.
+5. Do not invent company-specific policies, numbers, benefits,
+   eligibility criteria or procedures.
+6. If the required information is not available in the retrieved context, say:
+   "I could not find this information in the Shebal Solutions HR Policy Handbook.
    Please contact HR."
-
-7. Use previous conversation history to understand
-   follow-up questions.
-
-8. Where helpful, mention the relevant policy area
-   in the answer.
+7. Use previous conversation history to understand follow-up questions.
+8. Mention the relevant policy area where useful.
 """
 
 
 # =========================================================
-# 5. RAG SYSTEM
+# BUILD RAG RETRIEVER
 # =========================================================
 
 @st.cache_resource
 def build_retriever():
 
-    # Load policy PDF
     loader = PyPDFLoader(
         "Shebal_Solutions_HR_Policy_Handbook.pdf"
     )
 
     documents = loader.load()
 
-
-    # Split into chunks
     text_splitter = RecursiveCharacterTextSplitter(
-
         chunk_size=900,
-
         chunk_overlap=150
-
     )
 
     chunks = text_splitter.split_documents(documents)
 
-
-    # Embeddings
     embeddings = HuggingFaceEmbeddings(
-
-        model_name=
-        "sentence-transformers/all-MiniLM-L6-v2",
-
-        model_kwargs={
-            "device": "cpu"
-        },
-
-        encode_kwargs={
-            "normalize_embeddings": True
-        }
-
+        model_name="sentence-transformers/all-MiniLM-L6-v2",
+        model_kwargs={"device": "cpu"},
+        encode_kwargs={"normalize_embeddings": True}
     )
 
-
-    # Vector database
     vector_store = FAISS.from_documents(
-
         documents=chunks,
-
         embedding=embeddings
-
     )
 
-
-    # Retriever
     retriever = vector_store.as_retriever(
-
         search_type="similarity",
-
-        search_kwargs={
-            "k": 2
-        }
-
+        search_kwargs={"k": 2}
     )
-
 
     return retriever
 
@@ -393,20 +270,25 @@ retriever = build_retriever()
 
 
 # =========================================================
-# 6. INITIALIZE LLM
+# LLM
 # =========================================================
 
 llm = ChatGoogleGenerativeAI(
-
     model="gemini-3.6-flash",
-
     temperature=0.1
-
 )
 
 
 # =========================================================
-# 7. SIDEBAR
+# SESSION MEMORY
+# =========================================================
+
+if "messages" not in st.session_state:
+    st.session_state.messages = []
+
+
+# =========================================================
+# SIDEBAR
 # =========================================================
 
 with st.sidebar:
@@ -417,7 +299,7 @@ with st.sidebar:
         Shebal HR Assist
         </div>
 
-        <div class="sidebar-small">
+        <div class="sidebar-subtitle">
         Internal Employee Policy Support
         </div>
         """,
@@ -437,17 +319,18 @@ with st.sidebar:
 
     st.divider()
 
-    st.markdown("### What you can ask")
+    st.markdown("### You can ask about")
 
     st.markdown(
         """
-        - Leave & attendance
+        - Leave policy
+        - Attendance
         - Working hours
         - Probation
-        - Payroll processes
+        - Payroll
         - Performance management
         - Grievance procedure
-        - POSH policy
+        - POSH
         - Notice period
         - Employee benefits
         """
@@ -459,9 +342,9 @@ with st.sidebar:
 
     st.caption(
         """
-        Your question is matched with relevant
-        sections of the Shebal Solutions HR Policy
-        Handbook before an answer is generated.
+        Your question is matched with relevant sections
+        of the Shebal Solutions HR Policy Handbook before
+        an answer is generated.
         """
     )
 
@@ -471,14 +354,12 @@ with st.sidebar:
         "🗑️ Clear conversation",
         use_container_width=True
     ):
-
         st.session_state.messages = []
-
         st.rerun()
 
 
 # =========================================================
-# 8. HERO SECTION
+# HERO SECTION
 # =========================================================
 
 st.markdown(
@@ -486,15 +367,15 @@ st.markdown(
     <div class="hero-box">
 
         <div class="company-name">
-        SHEBAL SOLUTIONS PVT. LTD.
+            SHEBAL SOLUTIONS PVT. LTD.
         </div>
 
         <div class="hero-title">
-        Shebal HR Assist
+            Shebal HR Assist
         </div>
 
         <div class="hero-subtitle">
-        Your intelligent employee policy assistant
+            Your intelligent employee policy assistant
         </div>
 
     </div>
@@ -504,7 +385,7 @@ st.markdown(
 
 
 # =========================================================
-# 9. PROBLEM STATEMENT
+# PROBLEM STATEMENT
 # =========================================================
 
 st.markdown(
@@ -512,19 +393,15 @@ st.markdown(
     <div class="problem-box">
 
         <div class="problem-title">
-        THE PROBLEM WE SOLVE
+            THE PROBLEM WE SOLVE
         </div>
 
         <div class="problem-text">
+            Employees often spend time searching lengthy HR documents
+            or contacting HR for routine policy questions.
 
-        Employees often spend time searching lengthy
-        HR documents or contacting HR teams for routine
-        policy queries.
-
-        <b>Shebal HR Assist</b> provides quick,
-        policy-grounded answers while helping HR teams
-        reduce repetitive employee enquiries.
-
+            <b>Shebal HR Assist</b> provides quick, policy-grounded
+            answers while helping HR teams reduce repetitive employee enquiries.
         </div>
 
     </div>
@@ -534,13 +411,12 @@ st.markdown(
 
 
 # =========================================================
-# 10. EMPLOYEE + HR INFOGRAPHICS
+# EMPLOYEE + HR INFOGRAPHICS
 # =========================================================
 
 col1, col2 = st.columns(2, gap="large")
 
 
-# Employee infographic
 with col1:
 
     st.markdown(
@@ -548,36 +424,24 @@ with col1:
         <div class="info-card">
 
             <div class="info-icon">
-            👩‍💼
+                👩‍💼
             </div>
 
             <div class="info-heading">
-            For Employees
+                Employee Experience
             </div>
 
-            <div class="flow-text">
+            <div class="info-text">
+                Employees can ask HR policy questions in natural language
+                without manually searching through long documents.
 
-            Get HR policy information through a simple
-            conversational interface.
+                <br><br>
 
-            <br><br>
-
-            <span class="flow-highlight">
-            Ask
-            </span>
-
-            →
-
-            <span class="flow-highlight">
-            Search Policy
-            </span>
-
-            →
-
-            <span class="flow-highlight">
-            Get Answer
-            </span>
-
+                <span class="flow-chip">Ask</span>
+                &nbsp;→&nbsp;
+                <span class="flow-chip">Policy Search</span>
+                &nbsp;→&nbsp;
+                <span class="flow-chip">Answer</span>
             </div>
 
         </div>
@@ -586,7 +450,6 @@ with col1:
     )
 
 
-# HR infographic
 with col2:
 
     st.markdown(
@@ -594,37 +457,24 @@ with col2:
         <div class="info-card">
 
             <div class="info-icon">
-            🧑‍💼
+                🧑‍💼
             </div>
 
             <div class="info-heading">
-            For HR
+                HR Impact
             </div>
 
-            <div class="flow-text">
+            <div class="info-text">
+                HR teams can reduce repetitive policy enquiries while
+                providing employees with consistent access to documented information.
 
-            Reduce repetitive policy enquiries and
-            provide employees with consistent access
-            to documented HR information.
+                <br><br>
 
-            <br><br>
-
-            <span class="flow-highlight">
-            Policy Knowledge
-            </span>
-
-            →
-
-            <span class="flow-highlight">
-            RAG Retrieval
-            </span>
-
-            →
-
-            <span class="flow-highlight">
-            Employee Support
-            </span>
-
+                <span class="flow-chip">HR Policy</span>
+                &nbsp;→&nbsp;
+                <span class="flow-chip">RAG Retrieval</span>
+                &nbsp;→&nbsp;
+                <span class="flow-chip">Employee Support</span>
             </div>
 
         </div>
@@ -634,17 +484,17 @@ with col2:
 
 
 # =========================================================
-# 11. CHAT SECTION HEADING
+# CHAT HEADER
 # =========================================================
 
 st.markdown(
     """
     <div class="section-title">
-    Ask HR
+        Ask HR
     </div>
 
     <div class="section-caption">
-    Ask a question about your company HR policies.
+        Ask a question about your company HR policies.
     </div>
     """,
     unsafe_allow_html=True
@@ -652,15 +502,8 @@ st.markdown(
 
 
 # =========================================================
-# 12. CHAT MEMORY
+# WELCOME MESSAGE
 # =========================================================
-
-if "messages" not in st.session_state:
-
-    st.session_state.messages = []
-
-
-# Welcome message when chat is empty
 
 if len(st.session_state.messages) == 0:
 
@@ -670,10 +513,9 @@ if len(st.session_state.messages) == 0:
             """
             👋 **Hello! I'm Shebal HR Assist.**
 
-            I can help you understand policies related to
-            leave, attendance, probation, performance,
-            grievances, notice periods and other
-            employee HR processes.
+            I can help you understand policies related to leave,
+            attendance, probation, payroll, performance, grievances,
+            notice periods and other employee HR processes.
 
             **How can I help you today?**
             """
@@ -681,20 +523,17 @@ if len(st.session_state.messages) == 0:
 
 
 # =========================================================
-# 13. DISPLAY PREVIOUS CHAT
+# DISPLAY CHAT HISTORY
 # =========================================================
 
 for message in st.session_state.messages:
 
     with st.chat_message(message["role"]):
-
-        st.markdown(
-            message["content"]
-        )
+        st.markdown(message["content"])
 
 
 # =========================================================
-# 14. USER INPUT
+# CHAT INPUT
 # =========================================================
 
 user_input = st.chat_input(
@@ -703,82 +542,60 @@ user_input = st.chat_input(
 
 
 # =========================================================
-# 15. RAG + MEMORY CHATBOT
+# RAG + MEMORY
 # =========================================================
 
 if user_input:
 
-
-    # Display employee message
+    # Display user message
     with st.chat_message("user"):
-
         st.markdown(user_input)
 
-
     # Save user message
-    st.session_state.messages.append({
-
-        "role": "user",
-
-        "content": user_input
-
-    })
+    st.session_state.messages.append(
+        {
+            "role": "user",
+            "content": user_input
+        }
+    )
 
 
     # -----------------------------------------------------
     # RETRIEVE POLICY CONTENT
     # -----------------------------------------------------
 
-    retrieved_docs = retriever.invoke(
-        user_input
-    )
-
+    retrieved_docs = retriever.invoke(user_input)
 
     context = "\n\n".join(
-
         doc.page_content
-
         for doc in retrieved_docs
-
     )
 
 
     # -----------------------------------------------------
-    # CREATE MESSAGE HISTORY
+    # PREPARE CONVERSATION HISTORY
     # -----------------------------------------------------
 
     messages_for_llm = [
-
-        SystemMessage(
-            content=system_prompt
-        )
-
+        SystemMessage(content=system_prompt)
     ]
 
-
-    # Add previous conversation
     for message in st.session_state.messages[:-1]:
-
 
         if message["role"] == "user":
 
             messages_for_llm.append(
-
                 HumanMessage(
                     content=message["content"]
                 )
-
             )
-
 
         elif message["role"] == "assistant":
 
             messages_for_llm.append(
-
                 AIMessage(
                     content=message["content"]
                 )
-
             )
 
 
@@ -787,71 +604,58 @@ if user_input:
     # -----------------------------------------------------
 
     rag_prompt = f"""
+HR POLICY CONTEXT:
 
-    HR POLICY CONTEXT:
+{context}
 
-    {context}
+CURRENT EMPLOYEE QUESTION:
 
+{user_input}
 
-    CURRENT EMPLOYEE QUESTION:
+Answer the employee using the supplied HR policy context.
 
-    {user_input}
+Use previous conversation history if this is a follow-up question.
 
+Do not invent company policy information.
 
-    Instructions:
-
-    Answer the employee using the supplied
-    HR policy context.
-
-    Use previous conversation history if this
-    is a follow-up question.
-
-    Do not invent company-specific policy
-    information.
-
-    """
+If the answer is not available in the supplied policy context,
+tell the employee to contact HR.
+"""
 
 
     messages_for_llm.append(
-
         HumanMessage(
             content=rag_prompt
         )
-
     )
 
 
     # -----------------------------------------------------
-    # GENERATE ANSWER
+    # GENERATE RESPONSE
     # -----------------------------------------------------
 
     with st.chat_message("assistant"):
-
 
         with st.spinner(
             "Checking the HR policy..."
         ):
 
-
             response = llm.invoke(
                 messages_for_llm
             )
 
-
             answer = response.content
-
 
         st.markdown(answer)
 
 
     # -----------------------------------------------------
-    # SAVE AI MESSAGE
+    # SAVE ASSISTANT RESPONSE
     # -----------------------------------------------------
 
-    st.session_state.messages.append({
-
-        "role": "assistant",
-
-        "content": answer
-
-    })
+    st.session_state.messages.append(
+        {
+            "role": "assistant",
+            "content": answer
+        }
+    )
